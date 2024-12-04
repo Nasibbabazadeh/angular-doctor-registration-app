@@ -1,0 +1,22 @@
+<header class="header">
+    <div class="header__container">
+        <div class="header__logo">MyApp</div>
+        <nav class="header__nav">
+            <ul class="header__list--path">
+                <li>
+                    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/about" routerLinkActive="active">About</a>
+                </li>
+                <li>
+                    <a routerLink="/users" routerLinkActive="active">Users</a>
+                </li>
+            </ul>
+            <ul class="header__list--auth">
+                <li><a>Sign in</a></li>
+                <li><a>Sign up</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,45 @@
+.header {
+  background-color: #000000;
+  color: white;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+.header__container {
+  max-width: 1340px;
+  width: 100%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  font-size: 32px;
+  line-height: 48px;
+  font-weight: 500;
+}
+.header__nav {
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__list--auth, .header__list--path {
+  display: flex;
+  gap: 24px;
+}
+.header__list--auth li a, .header__list--path li a {
+  font-size: 18px;
+  line-height: 28px;
+  color: #fff;
+}
+.header__list--auth li a:hover, .header__list--path li a:hover {
+  color: aqua;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.header__list--auth li a.active, .header__list--path li a.active {
+  font-weight: bold;
+  color: rgb(255, 77, 77);
+}/*# sourceMappingURL=header.component.css.map */

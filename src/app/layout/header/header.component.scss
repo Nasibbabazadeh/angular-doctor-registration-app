@@ -1,0 +1,49 @@
+.header {
+    background-color: #000000;
+    color: white;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    &__container{
+        max-width: 1340px;
+        width: 100%;
+        margin: 0px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__logo{
+        font-size: 32px;
+        line-height: 48px;
+        font-weight: 500;
+    }
+    &__nav{
+        max-width: 600px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__list--auth,
+    &__list--path{
+        display: flex;
+        gap: 24px;
+        &  li  a {
+            font-size: 18px;
+            line-height: 28px;
+            color: #fff;
+            &:hover{
+                color: aqua;
+                cursor: pointer;
+                transition: all .4s;
+            }
+            &.active {
+                font-weight: bold;
+                color: rgb(255, 77, 77);
+              }
+        }
+    }   
+    
+            
+        
+}
