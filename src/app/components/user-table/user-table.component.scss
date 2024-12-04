@@ -1,0 +1,49 @@
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+
+    &__header {
+        background-color: #f4f4f4;
+
+        & .user-table__row--header {
+            .user-table__cell--header {
+                font-weight: bold;
+                text-align: left;
+                padding: 12px;
+                border: 1px solid #ddd;
+            }
+        }
+    }
+
+    &__body {
+        & .user-table__row--body {
+            &:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            &:hover {
+                background-color: #f1f1f1;
+            }
+
+            .user-table__cell {
+                padding: 12px;
+                border: 1px solid #ddd;
+                text-align: left;
+                &--actions{
+                    display: flex;
+                    gap: 8px;
+                    & button {
+                        padding: 6px 12px;
+                        border-radius: 8px;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &__row--body {
+        transition: background-color 0.3s ease;
+    }
+}
