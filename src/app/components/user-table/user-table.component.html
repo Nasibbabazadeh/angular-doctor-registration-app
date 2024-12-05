@@ -1,32 +1,41 @@
-<table class="user-table">
-    <thead class="user-table__header">
-        <tr class="user-table__row user-table__row--header">
-            <th class="user-table__cell user-table__cell--header">Firstname</th>
-            <th class="user-table__cell user-table__cell--header">Lastname</th>
-            <th class="user-table__cell user-table__cell--header">Age</th>
-            <th class="user-table__cell user-table__cell--header">Gender</th>
-            <th class="user-table__cell user-table__cell--header">Email</th>
-            <th class="user-table__cell user-table__cell--header">Phone Number</th>
-            <th class="user-table__cell user-table__cell--header">
-                Actions
-            </th>
-        </tr>
-    </thead>
-    <tbody class="user-table__body">
-        @for (user of users; track user.id) {
-        <tr class="user-table__row user-table__row--body">
-            <td class="user-table__cell">{{user.firstName}}</td>
-            <td class="user-table__cell">{{user.lastName}}</td>
-            <td class="user-table__cell">{{user.age}}</td>
-            <td class="user-table__cell">{{user.gender}}</td>
-            <td class="user-table__cell">{{user.email}}</td>
-            <td class="user-table__cell">{{user.phone}}</td>
-            <td class="user-table__cell user-table__cell--actions">
-                <button>Edit</button>
-                <button>Delete</button>
-            </td>
+<a [routerLink]="['/users/add']" routerLinkActive="active">Add User</a>
+@if (!loading) {
+<div class="user-list__container">
+    <table class="user-table">
+        <thead class="user-table__header">
+            <tr class="user-table__row user-table__row--header">
+                <th class="user-table__cell user-table__cell--header">Firstname</th>
+                <th class="user-table__cell user-table__cell--header">Lastname</th>
+                <th class="user-table__cell user-table__cell--header">Age</th>
+                <th class="user-table__cell user-table__cell--header">Gender</th>
+                <th class="user-table__cell user-table__cell--header">Email</th>
+                <th class="user-table__cell user-table__cell--header">Phone Number</th>
+                <th class="user-table__cell user-table__cell--header">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody class="user-table__body">
+            @for (user of users; track user.id) {
+            <tr class="user-table__row user-table__row--body">
+                <td class="user-table__cell">{{user.firstName}}</td>
+                <td class="user-table__cell">{{user.lastName}}</td>
+                <td class="user-table__cell">{{user.age}}</td>
+                <td class="user-table__cell">{{user.gender}}</td>
+                <td class="user-table__cell">{{user.email}}</td>
+                <td class="user-table__cell">{{user.phone}}</td>
+                <td class="user-table__cell user-table__cell--actions">
+                    <button>Edit</button>
+                    <button (click)="handleDelete(user.id)">Delete</button>
+                </td>
 
-        </tr>
-        }
-    </tbody>
-</table>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+
+@else {
+<h5>Loading dataa</h5>
+}

@@ -1,0 +1,42 @@
+.user-list__container {
+  max-width: 1340px;
+  margin: 0 auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+.user-table__header {
+  background-color: #f4f4f4;
+}
+.user-table__header .user-table__row--header .user-table__cell--header {
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+.user-table__body .user-table__row--body:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.user-table__body .user-table__row--body:hover {
+  background-color: #f1f1f1;
+}
+.user-table__body .user-table__row--body .user-table__cell {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.user-table__body .user-table__row--body .user-table__cell--actions {
+  display: flex;
+  gap: 8px;
+}
+.user-table__body .user-table__row--body .user-table__cell--actions button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+}
+.user-table__row--body {
+  transition: background-color 0.3s ease;
+}/*# sourceMappingURL=user-table.component.css.map */

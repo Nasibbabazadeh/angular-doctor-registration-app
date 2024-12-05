@@ -1,0 +1,60 @@
+<form class="user-form" [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+    <div class="user-form__field">
+        <label class="user-form__label" for="firstName">First Name</label>
+        <input class="user-form__input" type="text" id="firstName" formControlName="firstName" />
+    </div>
+
+    <div class="user-form__field">
+        <label class="user-form__label" for="lastName">Last Name</label>
+        <input class="user-form__input" type="text" id="lastName" formControlName="lastName" />
+    </div>
+
+    <div class="user-form__field">
+        <label class="user-form__label" for="age">Age</label>
+        <input class="user-form__input" type="number" id="age" formControlName="age" />
+    </div>
+
+    <div class="user-form__field user-form__field--group" formGroupName="passwords">
+        <div class="user-form__field">
+            <label class="user-form__label" for="password">Password</label>
+            <input class="user-form__input" type="password" id="password" formControlName="password"
+                placeholder="Password..." />
+            <span class="user-form__message user-form__message--error"
+                *ngIf="createUserForm.get('passwords')?.get('password')?.errors?.['passwordStrength']">
+                Your password must have lower case, upper case and numeric characters.
+            </span>
+        </div>
+        <div class="user-form__field">
+            <label class="user-form__label" for="repeatPassword">Repeat Password</label>
+            <input class="user-form__input" type="password" id="repeatPassword" formControlName="repeatPassword"
+                placeholder="Repeat Password..." />
+            <span class="user-form__message user-form__message--error"
+                *ngIf="createUserForm.get('passwords')?.errors?.['noMatchPasswords']">
+                Password must be same
+            </span>
+        </div>
+    </div>
+
+    <div class="user-form__field">
+        <label class="user-form__label" for="gender">Gender</label>
+        <select class="user-form__input user-form__input--select" id="gender" formControlName="gender">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+
+    <div class="user-form__field">
+        <label class="user-form__label" for="email">Email</label>
+        <input class="user-form__input" type="email" id="email" formControlName="email" />
+    </div>
+
+    <div class="user-form__field">
+        <label class="user-form__label" for="phone">Phone</label>
+        <input class="user-form__input" type="tel" id="phone" formControlName="phone" />
+    </div>
+
+    <div class="user-form__actions">
+        <button class="user-form__button" type="submit" [disabled]="!createUserForm.valid">User əlavə et</button>
+    </div>
+</form>

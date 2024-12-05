@@ -1,3 +1,7 @@
+.user-list__container{
+    max-width: 1340px;
+    margin: 0 auto;
+}
 .user-table {
     width: 100%;
     border-collapse: collapse;
@@ -47,3 +51,4 @@
         transition: background-color 0.3s ease;
     }
 }
+
