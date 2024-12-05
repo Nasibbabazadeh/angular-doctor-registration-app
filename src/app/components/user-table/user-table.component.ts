@@ -3,11 +3,12 @@ import { TUser, TUserResponse } from '../../models/users';
 import { UserService } from '../../services/user-service/user.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerComponent } from '../common/spinner/spinner.component';
 
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, SpinnerComponent],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.scss'
 })
