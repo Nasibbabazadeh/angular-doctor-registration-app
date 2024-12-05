@@ -17,6 +17,6 @@ export class GenericService {
     return this._httpClient.delete<T>(`${this._baseUrl}/${endpoint}/${id}`)
   }
   postMethod<T>(endpoint: string, body: any): Observable<T> {
-    return this._httpClient.post<T>(`${this._baseUrl}/${endpoint}`, { body })
+    return this._httpClient.post<T>(`${this._baseUrl}/${endpoint}`, body)
   }
 }

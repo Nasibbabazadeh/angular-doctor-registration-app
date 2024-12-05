@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TUser, TUserResponse } from '../../models/users';
 import { UserService } from '../../services/user-service/user.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-table',
@@ -14,7 +15,8 @@ export class UserTableComponent implements OnInit {
   loading: boolean = false
   users: TUser[] = []
   constructor(
-    private readonly _userService: UserService
+    private readonly _userService: UserService,
+    private readonly _toastr: ToastrService
   ) {
     this.loading = true
   }
@@ -33,9 +35,7 @@ export class UserTableComponent implements OnInit {
   }
   handleDelete(id: string | number) {
     this._userService.deleteUserById(id).subscribe({
-      next(value) {
-        console.log(value.isDeleted)
-      },
+      next: (value) => value.isDeleted && this._toastr.success('User deleted successfully!')
     })
   }
 }

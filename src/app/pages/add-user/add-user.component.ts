@@ -4,6 +4,7 @@ import { createPasswordStrengthValidator } from '../../validators/sync/passwordS
 import matchPasswords from '../../validators/sync/matchPasswords';
 import { NgIf } from '@angular/common';
 import { UserService } from '../../services/user-service/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'add-user',
@@ -14,7 +15,7 @@ import { UserService } from '../../services/user-service/user.service';
 })
 export class AddUserComponent {
   createUserForm!: FormGroup
-  constructor(private _formBuilder: FormBuilder, private _userService: UserService) {
+  constructor(private _formBuilder: FormBuilder, private _userService: UserService, private _toastr: ToastrService) {
     this.createUserForm = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: [''],
@@ -30,8 +31,9 @@ export class AddUserComponent {
   }
   onSubmit() {
     this.addUser()
+    this.createUserForm.reset()
   }
   addUser() {
-    this._userService.createUser(this.createUserForm.value).subscribe((response) => console.log(response))
+    this._userService.createUser(this.createUserForm.value).subscribe((response) => response && this._toastr.success('User created successfully!'))
   }
 }
