@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { TUser, TUserResponse } from '../../models/users';
 import { UserService } from '../../services/user-service/user.service';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { SpinnerComponent } from '../common/spinner/spinner.component';
+import { UserFormComponent } from "../user-form/user-form.component";
 
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, SpinnerComponent],
+  imports: [SpinnerComponent, UserFormComponent],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.scss'
 })

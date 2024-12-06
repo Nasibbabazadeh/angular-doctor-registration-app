@@ -3,8 +3,6 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { UsersComponent } from './pages/users/users.component';
-import { AddUserComponent } from './pages/add-user/add-user.component';
-
 export const routes: Routes = [
     {
         path: '',
@@ -21,10 +19,6 @@ export const routes: Routes = [
             {
                 path: 'users',
                 component: UsersComponent
-            },
-            {
-                path: 'users/add',
-                component: AddUserComponent
             },
             { path: '**', redirectTo: '', pathMatch: 'full' }
         ]

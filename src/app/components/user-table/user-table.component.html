@@ -1,4 +1,4 @@
-<a [routerLink]="['/users/add']" routerLinkActive="active">Add User</a>
+<user-form [userData]="users[0]" />
 @if (!loading) {
 <div class="user-list__container">
     <table class="user-table">
