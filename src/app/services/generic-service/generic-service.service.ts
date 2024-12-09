@@ -33,4 +33,10 @@ export class GenericService {
   postMethod<T>(endpoint: string, body: any): Observable<T> {
     return this._httpClient.post<T>(`${this._baseUrl}/${endpoint}`, body, { headers: this._headers })
   }
+
+  putMehod<T>(endpoint: string, body: any, id: string | number): Observable<T> {
+    return this._httpClient.put<T>(`${this._baseUrl}/${endpoint}/${id}`, body, {
+      headers: this._headers
+    })
+  }
 }

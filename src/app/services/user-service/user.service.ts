@@ -20,4 +20,7 @@ export class UserService {
   createUser(userDetails: any): Observable<TUser> {
     return this._genericService.postMethod<TUser>(`${this._endpoint}/add`, userDetails)
   }
+  editUserById(userDetails: any, userId: number): Observable<TUser> {
+    return this._genericService.putMehod<TUser>(this._endpoint, userDetails, userId)
+  }
 }

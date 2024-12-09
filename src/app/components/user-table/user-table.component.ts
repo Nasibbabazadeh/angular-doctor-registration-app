@@ -13,8 +13,11 @@ import { UserFormComponent } from "../user-form/user-form.component";
   styleUrl: './user-table.component.scss'
 })
 export class UserTableComponent implements OnInit {
+  isModalVisible: boolean = false
+  childFormTitle: string = ''
   loading: boolean = false
   users: TUser[] = []
+  selectedUser!: TUser
   constructor(
     private readonly _userService: UserService,
     private readonly _toastr: ToastrService
@@ -23,6 +26,19 @@ export class UserTableComponent implements OnInit {
   }
   ngOnInit(): void {
     this.fetchAllUsers()
+  }
+
+  closeModalHandler() {
+    this.isModalVisible = false
+  }
+  editUserHandler(user: TUser) {
+    this.isModalVisible = true
+    this.selectedUser = user
+    this.childFormTitle = 'Edit user'
+  }
+  addUserHandler() {
+    this.isModalVisible = true
+    this.childFormTitle = 'Add user'
   }
 
 

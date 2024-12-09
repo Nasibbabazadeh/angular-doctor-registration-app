@@ -56,7 +56,10 @@
         </div>
 
         <div class="user-form__actions">
-            <button class="user-form__button" type="submit" [disabled]="!createUserForm.valid">User əlavə et</button>
+            <button class="user-form__button user-form__button--cancel" type="reset" (click)="onClose()">Imtina
+                et</button>
+            <button class="user-form__button user-form__button--add" type="submit"
+                [disabled]="!createUserForm.valid">{{componentTitle}}</button>
         </div>
     </form>
 </div>

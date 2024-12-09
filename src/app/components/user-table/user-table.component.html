@@ -1,6 +1,10 @@
-<user-form [userData]="users[0]" />
+@if (isModalVisible) {
+<user-form [userData]="selectedUser" (closeModal)="closeModalHandler()" [componentTitle]="childFormTitle" />
+}
+
 @if (!loading) {
 <div class="user-list__container">
+    <button (click)="addUserHandler()" class="user-list__container__add-button">Add User</button>
     <table class="user-table">
         <thead class="user-table__header">
             <tr class="user-table__row user-table__row--header">
@@ -25,7 +29,7 @@
                 <td class="user-table__cell">{{user.email}}</td>
                 <td class="user-table__cell">{{user.phone}}</td>
                 <td class="user-table__cell user-table__cell--actions">
-                    <button>Edit</button>
+                    <button (click)="editUserHandler(user)">Edit</button>
                     <button (click)="handleDelete(user.id)">Delete</button>
                 </td>
 
