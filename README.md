@@ -1,29 +1,75 @@
-# DoctorManageApp
+<div *ngIf="prescriptionData && prescriptionData.isCardActive===true" class="data-container">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.10.
+    <div class="blank-info">
+        <div>
+            <span><b>Sığorta olunan:</b></span>
+            <span> {{prescriptionData.insuredName}} </span>
+        </div>
+        <div>
+            <span><b>Şirkət:</b></span>
+            <span> {{prescriptionData.policyInsuredName}} </span>
+        </div>
+        <div>
+            <span><b>Sığorta kartı:</b></span>
+            <span> {{prescriptionData.cardFullNumber}}</span>
+        </div>
+        <div>
+            <span><b>Təminat üzrə qalıqlar:</b></span>
+            <span>
+                <span *ngFor="let pl of programLimits" nz-tooltip="{{pl.templateName}}:{{pl.programName}}">
+                    <i *ngFor="let s of pl.serviceIdList; let i=index">
+                        {{pharmacyServices.get(s)}} {{ i== (pl.serviceIdList.length-1) ? '' : '+' }}
+                    </i>
+                    : &nbsp;
+                    <span *ngIf="pl.sumLimit>0 && pl.remainderSum>0" style="color: green;">
+                        {{(pl.remainderSum | number:'1.2-2')}}&nbsp;₼
+                    </span>
+                    <span *ngIf="pl.sumLimit==0 && pl.remainderSum==0" style="color: green;">
+                        Məhdudiyyət yoxdur
+                    </span>
+                    <span *ngIf="pl.sumLimit>0 && pl.remainderSum<=1" style="color: red;">
+                        Təminat bitib
+                    </span>
+                    <br>
+                </span>
+            </span>
+        </div>
+        <div>
+            <span><b>Blank üzrə üm ödəniş:</b></span>
+            <span>{{ prescriptionData.usedSum | number:'1.2-2'}}&nbsp;₼</span>
+        </div>
+        <div>
+            <span><b>Azadolma/Qeyd:</b></span>
+            <span>{{ replaceBySpace(prescriptionData.groupDeductible) }}</span>
+        </div>
+        <div>
+            <span><b>İstisnalar:</b></span>
+            <span>{{ prescriptionData.groupPublicDescr }}</span>
+        </div>
+        <div>
+            <span><b>Aptek üçün qeyd:</b></span>
+            <span>{{ prescriptionData.notes }}</span>
+        </div>
+        <div>
+            <span><b>Diaqnoz:</b></span>
+            <span>{{ prescriptionData.descr }}</span>
+        </div>
+        <div>
+            <span><b>Əlavə qeydlər:</b></span>
+            <span>{{ prescriptionData.additionalDiagnosisNotes }}</span>
+        </div>
+        <div>
+            <span><b>Blank statusu:</b></span>
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-
+            <span *ngIf="prescriptionData.approvementStatus == -1">
+                Bilinmir
+            </span>
+            <ng-container *ngFor="let item of prescriptionStatusData">
+                <nz-tag *ngIf="prescriptionData.approvementStatus == item.approvementStatus" nzColor={{item.nzColor}}>
+                    <span nz-icon nzType={{item.nzType}} nzSpin={{item.nzSpin}}></span>
+                    {{ prescriptionData.approvementStatusText }}
+                </nz-tag>
+            </ng-container>
+        </div>
+    </div>
+</div>
