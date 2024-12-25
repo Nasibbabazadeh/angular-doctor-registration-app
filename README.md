@@ -1,75 +1,34 @@
-<div *ngIf="prescriptionData && prescriptionData.isCardActive===true" class="data-container">
-
-    <div class="blank-info">
-        <div>
-            <span><b>Sığorta olunan:</b></span>
-            <span> {{prescriptionData.insuredName}} </span>
-        </div>
-        <div>
-            <span><b>Şirkət:</b></span>
-            <span> {{prescriptionData.policyInsuredName}} </span>
-        </div>
-        <div>
-            <span><b>Sığorta kartı:</b></span>
-            <span> {{prescriptionData.cardFullNumber}}</span>
-        </div>
-        <div>
-            <span><b>Təminat üzrə qalıqlar:</b></span>
-            <span>
-                <span *ngFor="let pl of programLimits" nz-tooltip="{{pl.templateName}}:{{pl.programName}}">
-                    <i *ngFor="let s of pl.serviceIdList; let i=index">
-                        {{pharmacyServices.get(s)}} {{ i== (pl.serviceIdList.length-1) ? '' : '+' }}
-                    </i>
-                    : &nbsp;
-                    <span *ngIf="pl.sumLimit>0 && pl.remainderSum>0" style="color: green;">
-                        {{(pl.remainderSum | number:'1.2-2')}}&nbsp;₼
-                    </span>
-                    <span *ngIf="pl.sumLimit==0 && pl.remainderSum==0" style="color: green;">
-                        Məhdudiyyət yoxdur
-                    </span>
-                    <span *ngIf="pl.sumLimit>0 && pl.remainderSum<=1" style="color: red;">
-                        Təminat bitib
-                    </span>
-                    <br>
-                </span>
-            </span>
-        </div>
-        <div>
-            <span><b>Blank üzrə üm ödəniş:</b></span>
-            <span>{{ prescriptionData.usedSum | number:'1.2-2'}}&nbsp;₼</span>
-        </div>
-        <div>
-            <span><b>Azadolma/Qeyd:</b></span>
-            <span>{{ replaceBySpace(prescriptionData.groupDeductible) }}</span>
-        </div>
-        <div>
-            <span><b>İstisnalar:</b></span>
-            <span>{{ prescriptionData.groupPublicDescr }}</span>
-        </div>
-        <div>
-            <span><b>Aptek üçün qeyd:</b></span>
-            <span>{{ prescriptionData.notes }}</span>
-        </div>
-        <div>
-            <span><b>Diaqnoz:</b></span>
-            <span>{{ prescriptionData.descr }}</span>
-        </div>
-        <div>
-            <span><b>Əlavə qeydlər:</b></span>
-            <span>{{ prescriptionData.additionalDiagnosisNotes }}</span>
-        </div>
-        <div>
-            <span><b>Blank statusu:</b></span>
-
-            <span *ngIf="prescriptionData.approvementStatus == -1">
-                Bilinmir
-            </span>
-            <ng-container *ngFor="let item of prescriptionStatusData">
-                <nz-tag *ngIf="prescriptionData.approvementStatus == item.approvementStatus" nzColor={{item.nzColor}}>
-                    <span nz-icon nzType={{item.nzType}} nzSpin={{item.nzSpin}}></span>
-                    {{ prescriptionData.approvementStatusText }}
-                </nz-tag>
-            </ng-container>
-        </div>
+<div class="blank-info">
+  <ng-container *ngFor="let item of prescriptionDetails">
+    <div>
+      <span><b>{{ item.label }}:</b></span>
+      <span [innerHTML]="item.value"></span>
     </div>
+  </ng-container>
 </div>
+
+<!-- Component Logic -->
+export class PrescriptionInfoComponent {
+  prescriptionDetails = [
+    { label: 'Sığorta olunan', value: prescriptionData.insuredName },
+    { label: 'Şirkət', value: prescriptionData.policyInsuredName },
+    { label: 'Sığorta kartı', value: prescriptionData.cardFullNumber },
+    { label: 'Blank üzrə üm ödəniş', value: `${prescriptionData.usedSum | number:'1.2-2'} ₼` },
+    { label: 'Azadolma/Qeyd', value: replaceBySpace(prescriptionData.groupDeductible) },
+    { label: 'İstisnalar', value: prescriptionData.groupPublicDescr },
+    { label: 'Aptek üçün qeyd', value: prescriptionData.notes },
+    { label: 'Diaqnoz', value: prescriptionData.descr },
+    { label: 'Əlavə qeydlər', value: prescriptionData.additionalDiagnosisNotes },
+    { label: 'Blank statusu', value: this.getStatusTag() }
+  ];
+
+  getStatusTag(): string {
+    if (prescriptionData.approvementStatus == -1) return 'Bilinmir';
+    const status = prescriptionStatusData.find(
+      item => item.approvementStatus == prescriptionData.approvementStatus
+    );
+    return status
+      ? `<nz-tag nzColor=${status.nzColor}><span nz-icon nzType=${status.nzType}></span> ${prescriptionData.approvementStatusText}</nz-tag>`
+      : '';
+  }
+}
